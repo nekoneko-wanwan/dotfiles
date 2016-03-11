@@ -41,7 +41,6 @@ setopt pushd_ignore_dups # すでにスタックに含まれていればスタ�
 # setopt extended_history # 開始と終了を記録
 
 
-
 ## 移動機能
 setopt auto_pushd # cd -[tab]で過去のディレクトリに
 setopt auto_cd # ディレクトリ名の入力だけでcd
@@ -100,12 +99,13 @@ PROMPT+="
 
 
 
-
 "
 PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
-PROMPT+="%n% @%m% ]"
-PROMPT+="%F{blue}%~%f"
+PROMPT+="[%n% @%m% ]"
 PROMPT+="\$(vcs_prompt_info)"
+PROMPT+="
+"
+PROMPT+="%F{blue}%~%f"
 PROMPT+="
 "
 PROMPT+="%% "
@@ -145,6 +145,8 @@ alias gsh="git show"
 alias gsho="git show --oneline"
 alias gbr="git branch"
 alias gch="git checkout"
+alias gchb="git checkout -b"
+alias gchm="git checkout master"
 alias gad="git add"
 alias gada="git add --all"
 alias gco="git commit"
