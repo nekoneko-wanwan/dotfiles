@@ -1,0 +1,16 @@
+[user]
+	name = testName
+	# email = @gmail.com
+[color]
+	ui = true
+[core]
+	# excludesfile = ~/.gitignore  # globalな.gitignoreの指定
+	quotepath = false # 日本語のファイル名
+	safecrlf = false # 改行コードが混在している場合は変換しない
+	autocrlf = input # コミット時にのみ CRLF -> LF に変換
+[alias]
+	# setting ~/.zshrc 
+
+[tig "bind"]
+	generic = g move-first-line
+	generic = G move-last-line
