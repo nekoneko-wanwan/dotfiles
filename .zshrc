@@ -47,6 +47,7 @@ setopt auto_cd # ディレクトリ名の入力だけでcd
 
 
 ## その他
+unsetopt correct_all # correct機能を無効
 setopt correct # 入力しているコマンド名が間違っている場合にもしかして：を出す。
 setopt nobeep # ビープを鳴らさない
 setopt prompt_subst # 色を使う
@@ -101,7 +102,7 @@ PROMPT+="
 
 "
 PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
-PROMPT+="[%n% @%m% ]"
+PROMPT+="[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}]"
 PROMPT+="\$(vcs_prompt_info)"
 PROMPT+="
 "
