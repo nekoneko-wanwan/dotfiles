@@ -2,18 +2,20 @@
 # 環境変数
 # -------------------------------------
 
+# 複数環境対応するためpathを通しておく
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+
 # SSHで接続した先で日本語が使えるようにする
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # エディタ
-export EDITOR=/usr/local/bin/vim
+export EDITOR=vim
 
 # Path to your oh-my-zsh installation.
 # export ZSH=$HOME/.oh-my-zsh
 # source $ZSH/oh-my-zsh.sh
-# export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 
 
 
