@@ -10,6 +10,12 @@ export LC_ALL=en_US.UTF-8
 # エディタ
 export EDITOR=/usr/local/bin/vim
 
+# Path to your oh-my-zsh installation.
+# export ZSH=$HOME/.oh-my-zsh
+# source $ZSH/oh-my-zsh.sh
+# export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+
+
 
 # -------------------------------------
 # zshのオプション
@@ -25,6 +31,19 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完でカラーを使用する
 autoload colors
 zstyle ':completion:*' list-colors "${LS_COLORS}"
+# 補完関数の表示を強化する
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
+zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
+# マッチ種別を別々に表示
+zstyle ':completion:*' group-name ''
+
+## Ctrl+rとかを使えるように
+bindkey -e
 
 
 ## 履歴機能
@@ -91,13 +110,12 @@ function vcs_prompt_info() {
 # end VCS
 
 ## Prompt
-OK=":^ω^"
-NG="#^ω^"
+OK=":^o^"
+NG="#^o^"
 
 PROMPT=""
 # 見やすくなるように改行をインサートする
 PROMPT+="
-
 
 
 "
@@ -173,4 +191,3 @@ alias tst="tig status"
 
 # cdしたあとで、自動的に ls する
 function chpwd() { ls -G -la }
-
