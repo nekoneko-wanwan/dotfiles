@@ -60,6 +60,7 @@ setopt hist_reduce_blanks # 余分な空白は詰めて記録
 setopt hist_no_store # histroyコマンドは記録しない
 setopt pushd_ignore_dups # すでにスタックに含まれていればスタックに追加しない
 # setopt extended_history # 開始と終了を記録
+function history-all { history -E 1 } # 全履歴表示
 
 
 ## 移動機能
@@ -150,6 +151,7 @@ alias l1="ls -1"
 
 # history
 alias h="history"
+alias ha="history-all"
 
 # tree
 alias tree="tree -NC" # N: 文字化け対策, C:色をつける
