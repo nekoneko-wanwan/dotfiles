@@ -27,3 +27,7 @@ set ignore-case = no
 set wrap-lines = no
 set focus-child = yes
 set show-line-numbers = yes
+
+# rebase -i
+bind main R !git rebase -i %(commit)
+bind diff R !git rebase -i %(commit)
