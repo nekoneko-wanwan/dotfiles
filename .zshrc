@@ -130,9 +130,10 @@ PROMPT+="
 PROMPT+="%F{blue}%~%f"
 PROMPT+="
 "
-PROMPT+="%% "
+# PROMPT+="%% "
+PROMPT+="$ " # $表示に
 
-RPROMPT="[%*]"
+# RPROMPT="[%*]" #右側に時刻を表示
 
 
 
