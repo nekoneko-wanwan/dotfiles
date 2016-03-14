@@ -78,6 +78,11 @@ setopt no_tify # バックグラウンドジョブが終了したらすぐに知
 setopt noautoremoveslash # パスの最後に付くスラッシュ(/)を自動的に削除させない
 setopt complete_aliases # 補完される前にオリジナルのコマンドまで展開してチェックされる
 
+# home, end, delキーを有効に
+bindkey "^[[3~" delete-char
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
 
 
 # -------------------------------------
