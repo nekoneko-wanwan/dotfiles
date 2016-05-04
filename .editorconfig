@@ -1,0 +1,18 @@
+# フォルダ以下のディレクトリのみにルールが適用される
+root = true
+
+[*]
+charset = utf-8
+indent_style = tab # tab or space
+indent_size = 4
+trim_trailing_whitespace = true # 行末のホワイトスペースを削除
+# insert_final_newline = true # 最終行に改行
+# end_of_line = lf # 改行コードを指定する
+
+# ファイル別 
+[*.scss]
+
+[*.html]
+
+# 複数ファイル
+[*.{yml,yaml}]
