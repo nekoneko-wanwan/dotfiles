@@ -24,3 +24,6 @@ set focus-child = yes
 # rebase -i
 bind main R !git rebase -i %(commit)
 bind diff R !git rebase -i %(commit)
+
+# -m branch: ブランチ名の変更（trigger -> M）
+bind refs M !git branch -m %(branch) %(prompt)
