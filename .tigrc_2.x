@@ -27,3 +27,6 @@ bind diff R !git rebase -i %(commit)
 
 # -m branch: ブランチ名の変更（trigger -> M）
 bind refs M !git branch -m %(branch) %(prompt)
+
+# checkout {COMMIT_ID}: コミット名でcheckout（trigger -> C）
+bind main C !git checkout %(commit)
