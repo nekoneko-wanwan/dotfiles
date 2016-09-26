@@ -1,7 +1,7 @@
 # v2.x
 
 # メインビューの表示設定
-set main-view = id:yes date:local author:full commit-title:graph=yes,refs=yes
+set main-view = id:yes date:true author:full commit-title:graph=yes,refs=yes
 
 set id-width = 7
 set blame-options = -C -C -C
