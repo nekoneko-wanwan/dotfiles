@@ -1,0 +1,6 @@
+linters:
+  Comment:
+    enabled: true
+
+  ImportantRule:
+    enabled: true

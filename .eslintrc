@@ -1,0 +1,12 @@
+{
+  "env": {
+    "node" : true,
+    "browser" : true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-undefined": 1,
+    "no-unused-vars": [0, {"vars": "all", "args": "after-used"}],
+    "no-undef-init": 1
+  }
+}
