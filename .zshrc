@@ -2,8 +2,19 @@
 # 環境変数
 # -------------------------------------
 
-# 複数環境対応するためpathを通しておく
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+# 複数環境対応するため末尾用pathを指定
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Node.jsの管理をHomebrew>nodebrewに変更
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# Rubyの参照先をrbenvに変更
+export PATH="~/.rbenv/shims:$PATH"
+
+eval "$(rbenv init -)"
+
+# phpのバージョン管理にphpbrewを使う（phpenvはrbenvと干渉してダメ）
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 # SSHで接続した先で日本語が使えるようにする
 export LANG=ja_JP.UTF-8
@@ -17,7 +28,7 @@ export EDITOR=vim
 # export ZSH=$HOME/.oh-my-zsh
 # source $ZSH/oh-my-zsh.sh
 
-
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # -------------------------------------
 # zshのオプション
@@ -147,7 +158,7 @@ PROMPT+="$ " # $表示に
 # -------------------------------------
 
 # -n 行数表示, -I バイナリファイル無視, svn関係のファイルを無視
-alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
+# alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
 
 # ls
 alias ls="ls -G" # color for darwin
@@ -188,11 +199,14 @@ alias ggrh="git grep HEAD"
 alias ggrc="git grep --cached"
 alias gre="git remote"
 alias grev="git remote -v"
+# alias gpl="git pull"
+alias gopr="git browse-remote --pr" # PRを開く use: gem git-browse-remote
 
 # tig
 alias t="tig"
 alias tst="tig status"
-
+alias tr="tig refs"
+alias tfp="tig --first-parent"
 
 
 # -------------------------------------
@@ -201,3 +215,8 @@ alias tst="tig status"
 
 # cdしたあとで、自動的に ls する
 function chpwd() { ls -G -la }
+
+# homebrewだと上手く動作しなかったので手動インストールしたbinにパスを通す
+# export PATH="/usr/local/opt/elasticsearch@2.4/bin:$PATH"
+export PATH="/usr/local/elasticsearch-2.3.1/bin:$PATH"
+
