@@ -8,13 +8,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Node.jsの管理をHomebrew>nodebrewに変更
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-# Rubyの参照先をrbenvに変更
-export PATH="~/.rbenv/shims:$PATH"
-
-eval "$(rbenv init -)"
-
-# phpのバージョン管理にphpbrewを使う（phpenvはrbenvと干渉してダメ）
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+# ruby, phpはanyenvでバージョン管理
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 
 # SSHで接続した先で日本語が使えるようにする
 export LANG=ja_JP.UTF-8
