@@ -195,6 +195,9 @@ alias ggrh="git grep HEAD"
 alias ggrc="git grep --cached"
 alias gre="git remote"
 alias grev="git remote -v"
+alias gsw="git switch"
+alias gswc="git switch -c"
+
 # alias gpl="git pull"
 alias gopr="git browse-remote --pr" # PRを開く use: gem git-browse-remote
 
@@ -216,3 +219,15 @@ function chpwd() { ls -G -la }
 # export PATH="/usr/local/opt/elasticsearch@2.4/bin:$PATH"
 export PATH="/usr/local/elasticsearch-2.3.1/bin:$PATH"
 
+# anyenv phpenvを入れているとbrew doctor時にでるwarningを消すために、brewを実行するときだけ$PATHから該当のwarningで出るパスを除去
+alias brew="env PATH=${PATH/~\/\.anyenv\/envs\/phpenv\/shims:/} brew"
+
+
+# pecoの設定
+function peco-history-selection() {
+  BUFFER="$(\history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/')"
+  CURSOR=$#BUFFER
+  zle -R -c
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection # ctrl+r で実行
