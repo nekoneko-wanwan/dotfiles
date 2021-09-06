@@ -186,7 +186,7 @@ alias gchm="git checkout master"
 alias gad="git add"
 alias gada="git add --all"
 alias gco="git commit"
-alias gam="git commit --amend"
+alias gcoa="git commit --amend"
 alias gdi="git diff"
 alias gdic="git diff --cached"
 alias gdih="git diff HEAD"
@@ -206,6 +206,10 @@ alias t="tig"
 alias tst="tig status"
 alias tr="tig refs"
 alias tfp="tig --first-parent"
+
+# docker
+alias dc="docker-compose"
+alias dcr='docker-compose run --rm'
 
 
 # -------------------------------------
@@ -231,3 +235,11 @@ function peco-history-selection() {
 }
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection # ctrl+r で実行
+
+# bookmark
+# ref: https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
+# use: ln -s path/to/certain/directory/with/my/project @important-project
+if [ -d "$HOME/.bookmarks" ]; then
+    export CDPATH=".:$HOME/.bookmarks:/"
+    alias goto="cd -P"
+fi
