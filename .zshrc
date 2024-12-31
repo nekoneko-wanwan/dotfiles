@@ -4,11 +4,9 @@
 
 # 複数環境対応するため末尾用pathを指定
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# Node.jsの管理をHomebrew>nodebrewに変更
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# ruby, phpはanyenvでバージョン管理
+# Apple Silico用
+export PATH="/opt/homebrew/bin:$PATH"
+# anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
@@ -57,8 +55,8 @@ bindkey -e
 
 ## 履歴機能
 export HISTFILE=${HOME}/.zsh_history # 履歴ファイルの保存先
-export HISTSIZE=1000 # メモリに保存される履歴の件数
-export SAVEHIST=10000 # 履歴ファイルに保存される履歴の件数
+export HISTSIZE=500 # メモリに保存される履歴の件数
+export SAVEHIST=5000 # 履歴ファイルに保存される履歴の件数
 setopt hist_ignore_dups # 直前と同じコマンドを記録しない
 setopt hist_ignore_all_dups # すでに履歴に含まれる場合古いほうを削除
 setopt hist_ignore_space # 行頭がスペースのコマンドは記録しない
@@ -182,7 +180,7 @@ alias gsho="git show --oneline"
 alias gbr="git branch"
 alias gch="git checkout"
 alias gchb="git checkout -b"
-alias gchm="git checkout master"
+alias gchm="git checkout main"
 alias gad="git add"
 alias gada="git add --all"
 alias gco="git commit"
@@ -219,22 +217,37 @@ alias dcr='docker-compose run --rm'
 # cdしたあとで、自動的に ls する
 function chpwd() { ls -G -la }
 
-# homebrewだと上手く動作しなかったので手動インストールしたbinにパスを通す
-# export PATH="/usr/local/opt/elasticsearch@2.4/bin:$PATH"
-export PATH="/usr/local/elasticsearch-2.3.1/bin:$PATH"
-
-# anyenv phpenvを入れているとbrew doctor時にでるwarningを消すために、brewを実行するときだけ$PATHから該当のwarningで出るパスを除去
-alias brew="env PATH=${PATH/~\/\.anyenv\/envs\/phpenv\/shims:/} brew"
-
-
 # pecoの設定
+## 履歴選択 ctrl+r で実行
 function peco-history-selection() {
   BUFFER="$(\history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/')"
   CURSOR=$#BUFFER
   zle -R -c
 }
 zle -N peco-history-selection
-bindkey '^R' peco-history-selection # ctrl+r で実行
+bindkey '^R' peco-history-selection
+
+## ディレクトリ移動 ctrl+u で実行
+if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
+    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+    add-zsh-hook chpwd chpwd_recent_dirs
+    zstyle ':completion:*' recent-dirs-insert both
+    zstyle ':chpwd:*' recent-dirs-default true
+    zstyle ':chpwd:*' recent-dirs-max 1000
+    zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
+fi
+
+function peco-cdr () {
+  local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd `echo $selected_dir | awk '{print$2}'`"
+    CURSOR=$#BUFFER
+    zle reset-prompt
+  fi
+}
+zle -N peco-cdr
+bindkey '^U' peco-cdr
+
 
 # bookmark
 # ref: https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
@@ -243,3 +256,9 @@ if [ -d "$HOME/.bookmarks" ]; then
     export CDPATH=".:$HOME/.bookmarks:/"
     alias goto="cd -P"
 fi
+
+# direnv direnvを有効化
+eval "$(direnv hook zsh)"
+
+# mysql
+export PATH="/opt/homebrew/opt/mysql@5.7/bin:$PATH"

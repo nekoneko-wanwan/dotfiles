@@ -1,0 +1,7 @@
+*~
+.DS_Store
+
+# vscodeのxdebug用設定ファイル
+.vscode/launch.json
+# .vscode/settings.json
+.vscode/extensions.json

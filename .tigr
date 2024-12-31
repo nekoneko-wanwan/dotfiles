@@ -12,7 +12,7 @@ set show-changes = yes
 set vertical-split = yes
 set split-view-width = 60%   # 垂直分割時の比率
 set split-view-height = 60%
-set status-untracked-dirs = yes
+# set status-untracked-dirs = yes
 set tab-size = 2
 set diff-context = 6
 set ignore-space = some
@@ -21,7 +21,7 @@ set ignore-case = no
 set wrap-lines = no
 set focus-child = yes
 
-# rebase -i
+# rebase -i: リベース（trigger -> R）
 bind main R !git rebase -i %(commit)
 bind diff R !git rebase -i %(commit)
 
